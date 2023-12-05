@@ -6,12 +6,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Util {
-    private String url = "jdbc:mysql://localhost:3306/base";
-    private String user = "root";
-    private String pass = "Rootroot1";
-    private Connection connection;
+    private static String url = "jdbc:mysql://localhost:3306/base";
+    private static String user = "root";
+    private static String pass = "Rootroot1";
+    private static Connection connection;
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         try {
             Driver driver = new com.mysql.cj.jdbc.Driver();
             DriverManager.registerDriver(driver);
@@ -21,4 +21,14 @@ public class Util {
         }
         return connection;
     }
+    public static void closeConnection() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }
+
