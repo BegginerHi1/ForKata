@@ -21,6 +21,7 @@ public class Util {
         }
         return connection;
     }
+    
     public static void closeConnection() {
         if (connection != null) {
             try {
